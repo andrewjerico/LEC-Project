@@ -1,0 +1,68 @@
+.navbar {
+    background-color: var(--blue);
+}
+
+.my-navbar-brand {
+    font-family: airnt;
+    color: var(--blue);
+    user-select: none;
+    font-size: 2rem;
+    position: relative;
+    -webkit-text-stroke: 1px #fff;
+}
+
+.my-navbar-brand::before {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+
+    color: transparent;
+    background-color: #fff;
+    background-clip: text;
+    overflow: hidden;
+
+    -webkit-background-clip: text;
+    -webkit-text-fill: transparent;
+    -webkit-text-stroke: 0 var(--white);
+
+    animation: init 2s linear 1;
+    animation-delay: 1s;
+    animation-fill-mode: forwards;
+}
+
+.nav-link {
+    color: #eee;
+    position: relative;
+}
+
+.nav-link::before {
+    content: "";
+    background-color: #fff;
+    position: absolute;
+    left: 50%;
+    right: 50%;
+    top: 100%;
+    height: 2px;
+    transition: .6s;
+}
+
+.nav-link:hover {
+    color: #fff;
+}
+
+.nav-link:hover:not(.dropdown-toggle)::before {
+    left: -10%;
+    right: -10%;
+}
+
+@keyframes init {
+    0% {
+        width: 0%;
+    }
+    100% {
+        width: 100%;
+    }
+}

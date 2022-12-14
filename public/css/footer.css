@@ -1,0 +1,33 @@
+.footer {
+    color: #fff;
+    background-color: var(--dblue);
+}
+
+.soc-med a {
+    margin-right: 1em;
+    color: #fff;
+}
+
+.soc-med a i {
+    font-size: 1.5rem;
+}
+
+.my-footer::before {
+    content: "";
+    background-color: #fff;
+    position: absolute;
+    left: 0%;
+    right: 0%;
+    top: 90%;
+    height: 2px;
+}
+
+.footer-links a,
+.footer span {
+    font-size: 0.9rem;
+    color: #fff;
+}
+
+.footer-links a:hover {
+    text-decoration: underline !important;
+}

@@ -1,0 +1,56 @@
+@import url('navbar.css');
+@import url('footer.css');
+@import url('home.css');
+@import url('about.css');
+@import url('form.css');
+
+@font-face {
+    font-family: "airnt";
+    src: url("/fonts/AirntQuantum-JRMra.otf");
+}
+
+:root {
+    --dblue: #1E2538;
+    --blue: #475B74;
+    --lblue: #7D8DA6;
+    --white: #e9eef2;
+    --red: #e65c4f;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+a {
+    text-decoration: none !important;
+}
+
+img{
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.section-header {
+    width: 99%;
+    margin: auto;
+    position: relative;
+}
+
+.section-header h4{
+    font-weight: bold;
+}
+
+.section-header::before {
+    content: "";
+    background-color: var(--lblue);
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 10px;
+    height: 100%;
+}
+
+.btn-primary{
+    background-color: var(--lblue) !important;
+    border: none !important;
+}
