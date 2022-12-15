@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="bg-dark opacity-75 d-flex flex-column justify-content-center align-items-center" style="height:500px">   
-        <form action="/login-check" method="POST" class="d-flex flex-column align-items-center">
+        <form action="/login" method="POST" class="d-flex flex-column align-items-center">
             @csrf
             
             <h1 class="h3 mb-5 fw-normal text-white">Hello, Welcome back to HORIZONS</h1>

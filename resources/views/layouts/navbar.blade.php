@@ -38,38 +38,18 @@
                             WISHLIST
                         </a>
                     </li>
-                    {{-- <li class="nav-item dropdown">
+                    <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="/" role="button" data-bs-toggle="dropdown" aria-expanded="false"
                             style="font-size: 1.2rem;">
                             <i class="bi bi-person-circle"></i>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="/">Profile</a></li>
+                            <li><a class="dropdown-item" href="/profile/{{ auth()->user()->id }}">Profile</a></li>
                             <li>
-                                <form action="/logout" method="get">
-                                    @csrf
-                                    <button type="submit" class="dropdown-item">
-                                        <i class="bi bi-box-arrow-right"></i>
-                                        Log Out
-                                    </button>
-                                </form>
+                                <a href="/logout" class="dropdown-item "><i class="bi bi-box-arrow-right"></i> Logout</a>
                             </li>
                         </ul>
-                    </li> --}}
-                    <div class="btn-group">
-                        <button type="button" class="btn btn-link" data-bs-toggle="dropdown" >
-                            {{-- @if (auth()->user()->image) --}}
-                                {{-- <img src="{{ asset('storage/'.auth()->user()->image) }}" alt="" style="height: 40px;width:40px" class="rounded-circle"> --}}
-                            {{-- @else --}}
-                                <img src="{{ asset('img/profile.png') }}" alt="" style="height: 30px;width:30px" class="rounded-circle">
-                            {{-- @endif --}}
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item " href="/profile/{{ auth()->user()->id }}">Profile</a></li>
-                            <li><hr class="dropdown-divider bg-light"></li>
-                            <li><a href="/logout" class="dropdown-item "><i class="bi bi-box-arrow-right"></i> Logout</a></li>
-                        </ul>
-                    </div>
+                    </li>
                 @else
                     <li class="nav-item">
                         <a href="/register" class="nav-link">

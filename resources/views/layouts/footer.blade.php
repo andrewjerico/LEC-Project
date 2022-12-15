@@ -1,4 +1,4 @@
-<footer class="footer footer-expand-lg mt-5">
+<footer class="footer footer-expand-lg">
 
     <div class="my-footer container-fluid col-lg-11 d-flex justify-between pt-4 pb-5 position-relative">
 
@@ -31,18 +31,18 @@
 
             <div>
                 <div>
-                    <h5>Kebijakan</h5>
+                    <h5>Policy</h5>
                 </div>
     
                 <div class="footer-links mt-3 d-flex flex-column">
-                    <a href="/">Kebijakan dan Privasi</a>
-                    <a href="/">Ketentuan dan Persyaratan Umum</a>
+                    <a href="/">Policy and Privacy</a>
+                    <a href="/">Terms and condition</a>
                 </div>
             </div>
 
             <div>
                 <div>
-                    <h5>Hubungi Kami</h5>
+                    <h5>Contact Us</h5>
                 </div>
 
                 <div class="footer-links mt-3 d-flex flex-column">
