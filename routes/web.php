@@ -3,6 +3,8 @@
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\PlaceController;
+use App\Http\Controllers\PolicyController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegisterController;
 use Illuminate\Support\Facades\Route;
@@ -32,3 +34,8 @@ Route::get('/profile/{id}',[ProfileController::class,'edit'])->middleware('auth'
 Route::put('/profile',[ProfileController::class,'update'])->middleware('auth');
 
 Route::get('/about',[AboutController::class,'index']);
+
+Route::get('/policy',[PolicyController::class,'policy']);
+Route::get('/terms',[PolicyController::class,'terms']);
+
+Route::resource('/place',PlaceController::class);

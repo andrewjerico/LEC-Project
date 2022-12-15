@@ -20,12 +20,12 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="/about">ABOUT</a>
+                    <a class="nav-link" href="/place">PLACE</a>
                 </li>
 
-                {{-- <li class="nav-item">
-                    <a class="nav-link" href="/news">NEWS</a>
-                </li> --}}
+                <li class="nav-item">
+                    <a class="nav-link" href="/about">ABOUT</a>
+                </li>
 
             </ul>
 

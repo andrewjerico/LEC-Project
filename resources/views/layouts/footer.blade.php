@@ -11,15 +11,15 @@
 
             <div class="soc-med">
 
-                <a href="">
+                <a href="https://twitter.com/">
                     <i class="bi bi-twitter"></i>
                 </a>
 
-                <a href="">
+                <a href="https://www.facebook.com/">
                     <i class="bi bi-facebook"></i>
                 </a>
 
-                <a href="">
+                <a href="https://www.instagram.com/">
                     <i class="bi bi-instagram"></i>
                 </a>
 
@@ -35,8 +35,8 @@
                 </div>
     
                 <div class="footer-links mt-3 d-flex flex-column">
-                    <a href="/">Policy and Privacy</a>
-                    <a href="/">Terms and condition</a>
+                    <a href="/policy">Policy and Privacy</a>
+                    <a href="/terms">Terms and condition</a>
                 </div>
             </div>
 
