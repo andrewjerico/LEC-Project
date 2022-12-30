@@ -1,12 +1,13 @@
 <?php
 
-use App\Http\Controllers\AboutController;
-use App\Http\Controllers\DashboardController;
+
 use App\Http\Controllers\LoginController;
-use App\Http\Controllers\PlaceController;
-use App\Http\Controllers\PolicyController;
-use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PlaceController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\WishlistController;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,22 +21,32 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/',[DashboardController::class,'index']);
+Route::get('/', [HomeController::class, 'index']);
 
+
+
+Route::resource('/places', PlaceController::class);
+
+// wishlist
+Route::get('/wishlist', [WishlistController::class, 'index']);
+Route::post('/wishlist',[WishlistController::class,'store']);
+Route::delete('/wishlist/{id}',[WishlistController::class,'destroy']);
+
+
+// register
 Route::get('/register',[RegisterController::class,'index'])->middleware('guest');
-Route::post('/register',[RegisterController::class,'check'])->middleware('guest');
+Route::post('/register',[RegisterController::class,'store']);
 
+// login
 Route::get('/login',[LoginController::class,'index'])->middleware('guest');
-Route::post('/login',[LoginController::class,'check'])->middleware('guest');
+Route::post('/login',[LoginController::class,'authenticate']);
+Route::post('/logout',[LoginController::class,'logout']);
 
-Route::get('/logout',[LoginController::class,'logout'])->middleware('auth');
-
+// profile
 Route::get('/profile/{id}',[ProfileController::class,'edit'])->middleware('auth');
 Route::put('/profile',[ProfileController::class,'update'])->middleware('auth');
 
-Route::get('/about',[AboutController::class,'index']);
-
-Route::get('/policy',[PolicyController::class,'policy']);
-Route::get('/terms',[PolicyController::class,'terms']);
-
-Route::resource('/place',PlaceController::class);
+// miscs
+Route::view('/about', 'miscs.about');
+Route::view('/policy', 'miscs.policy_and_privacy');
+Route::view('/terms', 'miscs.terms_and_condition');

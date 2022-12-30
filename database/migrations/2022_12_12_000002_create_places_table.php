@@ -14,13 +14,22 @@ class CreatePlacesTable extends Migration
     public function up()
     {
         Schema::create('places', function (Blueprint $table) {
+
             $table->id();
             $table->string('name');
             $table->text('description');
             $table->string('location');
-            $table->string('province');
-            $table->integer('price');  
+            $table->integer('price');
+            $table->string('image');
+            $table->integer('popularity');
+
+            $table->foreignId('province_id')
+                ->constrained()
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
+
             $table->timestamps();
+
         });
     }
 
