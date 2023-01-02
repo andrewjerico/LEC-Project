@@ -1,10 +1,12 @@
 <nav class="navbar navbar-expand-lg navbar-dark">
     <div class="container">
 
-        <h3 class="navbar-brand d-flex" style="font-weight: 900;">
-            <span style="color: var(--red);">Movie</span>
-            <span style="color: var(--white)">List</span>
-        </h3>
+        <div class="col-lg-4">
+            <div class="my-navbar-brand d-inline-block" data-text="HORIZONS">
+                HORIZONS
+            </div>
+        </div>
+
 
 
         {{-- burger button --}}
@@ -45,7 +47,7 @@
                         </a>
                         <ul class="dropdown-menu">
                             <li>
-                                <a class="dropdown-item" href="/users/{{ auth()->user()->id }}/edit">
+                                <a class="dropdown-item" href="/profile/{{ auth()->user()->id }}/edit">
                                     PROFILE
                                 </a>   
                             </li>

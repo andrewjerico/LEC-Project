@@ -2,7 +2,7 @@
 @import url('footer.css');
 @import url('home.css');
 @import url('about.css');
-@import url('form.css');
+@import url('login-register.css');
 
 @font-face {
     font-family: "airnt";
@@ -13,8 +13,20 @@
     --dblue: #1E2538;
     --blue: #475B74;
     --lblue: #7D8DA6;
-    --white: #e9eef2;
+    --white: #e0e1dc;
     --red: #e65c4f;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #fff;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #bbb;
 }
 
 html {
@@ -53,4 +65,9 @@ img{
 .btn-primary{
     background-color: var(--lblue) !important;
     border: none !important;
+}
+
+.no-result{
+    display: grid;
+    place-items: center;
 }

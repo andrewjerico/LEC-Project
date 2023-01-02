@@ -9,15 +9,7 @@
                         <div class="d-flex justify-content-center">
                             <h2 class="text-white">My Profile</h2>
                         </div>
-                        
                         <div class="d-flex flex-column justify-content-center align-items-center mt-5">
-                            {{-- <button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                @if ($user->image)
-                                    <img src="{{ asset('storage/'.$user->image) }}" alt="" class="rounded-circle" style="height: 200px; width: 200px">
-                                @else
-                                    <img src="{{ asset('img/profile.png') }}" alt="" class="rounded-circle" style="height: 200px; width: 200px">
-                                @endif
-                            </button> --}}
                             <h4 class="mt-1 text-white">{{ $user->username }}</h4>
                             <h5 class="text-muted mt-1 text-white">{{ $user->email }}</h5>
                         </div>
@@ -26,11 +18,9 @@
                 </div>
                 <div class="col-md-8">
                     <h2 class="text-white">Update Profile</h2>
-                    <form action="/profile" method="post" class="mb-5" enctype="multipart/form-data">
+                    <form action="/profile/{{ $user->id }}" method="post" class="mb-5" enctype="multipart/form-data">
                         @method('put')
                         @csrf
-                        <input type="hidden" name="id" value="{{ $user->id }}">
-                        <input type="hidden" name="oldImage" value="{{ $user->image }}">
                         {{-- Username --}}
                         <div class="mb-3">
                             <label for="username" class="form-label text-white">Username</label>

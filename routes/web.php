@@ -28,9 +28,9 @@ Route::get('/', [HomeController::class, 'index']);
 Route::resource('/places', PlaceController::class);
 
 // wishlist
-Route::get('/wishlist', [WishlistController::class, 'index']);
-Route::post('/wishlist',[WishlistController::class,'store']);
-Route::delete('/wishlist/{id}',[WishlistController::class,'destroy']);
+Route::get('/wishlist', [WishlistController::class, 'index'])->middleware('user');
+Route::post('/wishlist',[WishlistController::class,'store'])->middleware('user');
+Route::delete('/wishlist/{id}',[WishlistController::class,'destroy'])->middleware('user');
 
 
 // register
@@ -43,8 +43,8 @@ Route::post('/login',[LoginController::class,'authenticate']);
 Route::post('/logout',[LoginController::class,'logout']);
 
 // profile
-Route::get('/profile/{id}',[ProfileController::class,'edit'])->middleware('auth');
-Route::put('/profile',[ProfileController::class,'update'])->middleware('auth');
+Route::get('/profile/{user:id}/edit',[ProfileController::class,'edit'])->middleware('auth');
+Route::put('/profile/{id}',[ProfileController::class,'update'])->middleware('auth');
 
 // miscs
 Route::view('/about', 'miscs.about');

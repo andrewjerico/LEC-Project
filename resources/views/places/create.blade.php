@@ -6,7 +6,7 @@
             <h1 style="color: #475B74">Add Place</h1>
         </div>
         <div class="col">
-            <form action="/place" method="post" enctype="multipart/form-data">
+            <form action="/places" method="post" enctype="multipart/form-data">
                 @csrf
                 {{-- Nama --}}
                 <div class="mb-3">

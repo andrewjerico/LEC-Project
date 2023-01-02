@@ -16,32 +16,21 @@ class PlaceController extends Controller
      */
     public function index()
     {   
-        if(request('place')){
-            $places = Place::where('name','LIKE',"%".request('place')."%")->get();
-        }
-        else{
-            $places = Place::all();
-        }
-        
+
+        $places = Place::with('province');
         $provinces = Province::all();
 
-        // $prov = null;
-        // $prov['id'] = 0;
-        // $prov['province_name'] = null;
-        // dd(request('province_id'));
-        // $prov_id = null;
-        // $prov_id = request('province_id');
-        if(request('province_id')){
-            // $prov = Province::where('id','=',request('province_id'))->first();
-           
-            $places = Place::where('province_id','=',request('province_id'))->get();
+        if(request('search_place')){
+            $places = $places->where('name','LIKE', '%'. request('search_place') .'%');
+        }
+        
+        if(request('filter_province') && request('filter_province') != 'null'){
+            $places = $places->where('province_id', request('filter_province'));
         }
 
-        return view('places.index',[
-            'places' => $places,
-            'provinces' => $provinces,
-            // 'prov_id' => $prov_id
-        ]);
+        $places = $places->get();
+
+        return view('places.index', compact('provinces', 'places'));
     }
 
     /**
@@ -52,9 +41,7 @@ class PlaceController extends Controller
     public function create()
     {   
         $provinces = Province::all();
-        return view('places.create',[
-            'provinces' => $provinces
-        ]);
+        return view('places.create', compact('provinces'));
     }
 
     /**
@@ -80,7 +67,7 @@ class PlaceController extends Controller
 
         Place::create($data);
 
-        return redirect('/places');
+        return redirect('/places')->with('message', 'New tourist destination has been added!');
     }
 
     /**
@@ -91,9 +78,7 @@ class PlaceController extends Controller
      */
     public function show(Place $place)
     {   
-        return view('places.show',[
-            'place' => $place
-        ]);
+        return view('places.show', compact('place'));
     }
 
     /**
@@ -105,10 +90,7 @@ class PlaceController extends Controller
     public function edit(Place $place)
     {
         $provinces = Province::all();
-        return view('places.edit',[
-            'provinces' => $provinces,
-            'place' => $place
-        ]);
+        return view('places.edit', compact('place', 'provinces'));
     }
 
     /**
@@ -139,7 +121,7 @@ class PlaceController extends Controller
 
         Place::where('id', $place->id)->update($data);
 
-        return redirect()->to('/places/'. $place->id);
+        return redirect('/places//'. $place->id);
     }
 
     /**

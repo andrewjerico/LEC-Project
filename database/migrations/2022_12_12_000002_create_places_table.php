@@ -21,7 +21,7 @@ class CreatePlacesTable extends Migration
             $table->string('location');
             $table->integer('price');
             $table->string('image');
-            $table->integer('popularity');
+            $table->integer('popularity')->default(0);
 
             $table->foreignId('province_id')
                 ->constrained()

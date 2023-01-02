@@ -9,14 +9,14 @@
                 </div>
             </div>
             <div>
-                {{-- @can('admin') --}}
-                    <a href="/place/{{ $place->id }}/edit" style="color: black;"><i class="bi bi-pencil-square"></i></a>
-                    <form action="/place/{{ $place->id }}" method="post" class="d-inline mt-1">
+                @can('admin')
+                    <a href="/places/{{ $place->id }}/edit" style="color: black;"><i class="bi bi-pencil-square"></i></a>
+                    <form action="/places/{{ $place->id }}" method="post" class="d-inline mt-1">
                         @method('delete')
                         @csrf
                         <button class="btn btn-link" onclick="return confirm('Are you sure?')" style="color: red"><i class="bi bi-trash"></i></button>
                     </form>
-                {{-- @endcan --}}
+                @endcan
             </div>
             <div class="row mt-2 mb-3">
                 <h1>{{ $place->name }}</h1>

@@ -10,37 +10,31 @@
                 <form action="/places">
                     @csrf
                     <div class="input-group">
-                        <input type="search" class="form-control" placeholder="Search" name="place" value="{{ request('place') }}">
+                        <input type="search" class="form-control" placeholder="Search" name="search_place" 
+                        value="{{ request('search_place') }}">
                     </div>
                 </form>
-                {{-- @can('admin') --}}
+                @can('admin')
                     <div class="d-flex justify-content-end mb-1">
-                        <a href="/places/create" class="btn btn-dark text-decoration-none" style="height: 37px">Add&nbsp;Place</a>
+                        <a href="/places/create" class="btn btn-dark text-decoration-none" style="height: 37px">
+                            Add Place
+                        </a>
                     </div>
-                {{-- @endcan --}}
+                @endcan
             </div>
         </div>
         <div class="d-flex mb-2">
             <h5 class="mt-1">Sort By Location : </h5>
-            <form action="/places" class="">
+            <form action="/places" id="filter_province">
                 @csrf
-                <div class="d-flex">
-                    <select class="form-control" id="province_id" name="province_id" value="{{ old('province_id') }}">
-                        <option value="" disabled selected hidden>--Open this select menu--</option>
-                        @foreach ($provinces as $province)
-                            {{-- @if ($province->id = old('province_id'))
-                                <option value="{{ $province->id }}" selected>{{ $province->province_name }}</option>
-                            @else
-                                <option value="{{ $province->id }}">{{ $province->province_name }}</option>
-                            @endif --}}
-                            <option value="{{ $province->id }}">{{ $province->province_name }}</option>
-                        @endforeach
-                    </select>
-                    <div class="">
-                        <button type="submit" class="btn btn-dark col">Search</button>
-                    </div>
-                </div>
-                
+                <select class="form-control" name="filter_province" onchange="submit()">
+                    <option value="null" selected>-- Open this select menu --</option>
+                    @foreach ($provinces as $province)
+                        <option value="{{ $province->id }}" @if (request('filter_province') == $province->id) selected @endif>
+                            {{ $province->province_name }}
+                        </option>
+                    @endforeach
+                </select>
             </form>
         </div>
         <div class="row">
@@ -49,28 +43,42 @@
                     <div class="card" style="width: 100%;">
                         <img src="{{ asset('storage/'.$place->image) }}" class="card-img-top" alt="..." style="height: 200px">
                         <div class="card-body">
-                          <h5 class="card-title" style="text-overflow: ellipsis; white-space:nowrap; overflow:hidden;">{{ $place->name }}</h5>
-                          <p class="card-text" style="text-overflow: ellipsis; white-space:nowrap; overflow:hidden;"><i class="bi bi-geo-alt-fill"></i> {{ $place->province->province_name }}</p>
-                          <p class="card-text" style="text-overflow: ellipsis; white-space:nowrap; overflow:hidden;">{{ $place->description }}</p>
-                          <a href="/places/{{ $place->id }}" class="btn btn-dark">Detail</a>
-                          @auth
-                            @if (App\Models\Wishlist::where('user_id', Auth::user()->id)->where('place_id', $place->id)->first())
-                                <p>added to wishlist</p>
-                            @else
-                                <form action="/wishlist" method="post">
-                                    @csrf
-                                    <input type="hidden" name="place_id" value="{{ $place->id }}">
-                                    <input type="hidden" name="place_name" value="{{ $place->name }}">
-                                    <button type="submit" class="btn btn-primary">+</button>
-                                </form>
-                            @endif
-                            
-                          @endauth
-                          
+                        <h5 class="card-title" style="text-overflow: ellipsis; white-space:nowrap; overflow:hidden;">
+                            {{ $place->name }}
+                        </h5>
+                        <p class="card-text" style="text-overflow: ellipsis; white-space:nowrap; overflow:hidden;">
+                            <i class="bi bi-geo-alt-fill"></i> 
+                            {{ $place->province->province_name }}
+                        </p>
+                        <p class="card-text" style="text-overflow: ellipsis; white-space:nowrap; overflow:hidden;">
+                            {{ $place->description }}
+                        </p>
+                        <a href="/places/{{ $place->id }}" class="btn btn-dark">Detail</a>
+                        
+                        @can('user')
+                        @if (App\Models\Wishlist::where('user_id', Auth::user()->id)->where('place_id', $place->id)->first())
+                            <p>added to wishlist</p>
+                        @else
+                            <form action="/wishlist" method="post">
+                                @csrf
+                                <input type="hidden" name="place_id" value="{{ $place->id }}">
+                                <input type="hidden" name="place_name" value="{{ $place->name }}">
+                                <button type="submit" class="btn btn-primary">+</button>
+                            </form>
+                        @endif
+                        @endcan
+        
                         </div>
                     </div>
                 </div>
             @endforeach
         </div>
     </div>
+
+    <script>
+        const submit = function(){
+            const filter_province = document.getElementById('filter_province');
+            filter_province.submit();
+        }
+    </script>
 @endsection
