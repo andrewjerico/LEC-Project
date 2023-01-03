@@ -24,11 +24,11 @@ class PlaceController extends Controller
             $places = $places->where('name','LIKE', '%'. request('search_place') .'%');
         }
         
-        if(request('filter_province') && request('filter_province') != 'null'){
+        if(request('filter_province') && request('filter_province') != 'none'){
             $places = $places->where('province_id', request('filter_province'));
         }
 
-        $places = $places->get();
+        $places = $places->paginate(4);
 
         return view('places.index', compact('provinces', 'places'));
     }

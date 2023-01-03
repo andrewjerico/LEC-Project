@@ -27,7 +27,7 @@
                 <div class="form-floating mb-2 w-100">
                     <input type="email" class="form-control custom-form-input
                     @error('email') is-invalid @enderror" placeholder="Email Address"
-                    name="email" value="{{ old('email') }}">
+                    name="email" value="{{ Cookie::get('ecookie') }}">
 
                     <label class="custom-floating-label">
                         <i class="bi bi-envelope-fill"></i>
@@ -43,7 +43,7 @@
                 <div class="form-floating mb-2 w-100">
                     <input type="password" class="form-control custom-form-input
                     @error('password') is-invalid @enderror" placeholder="Password"
-                    name="password">
+                    name="password" value="{{ Cookie::get('pcookie') }}">
 
                     <label class="custom-floating-label">
                         <i class="bi bi-key-fill"></i>
@@ -54,6 +54,14 @@
                             {{ $message }}
                         </div>
                     @enderror 
+                </div>
+
+                <div class="form-check align-self-baseline">
+                    <input class="form-check-input" type="checkbox" id="remember"
+                    name="remember">
+                    <label class="form-check-label" for="remember">
+                        Remember Me
+                    </label>
                 </div>
                     
                 <button class="btn btn-lg text-light mt-4 w-50 custom-form-button" 
