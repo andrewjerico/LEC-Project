@@ -113,15 +113,15 @@ class PlaceController extends Controller
 
 
         if($request->file('image')){
-            if($request->oldImage){
-                Storage::delete($request->oldImage);
+            if($request->old_image){
+                Storage::delete($request->old_image);
             }
             $data['image'] = $request->file('image')->store('place-image');
         }
 
         Place::where('id', $place->id)->update($data);
 
-        return redirect('/places//'. $place->id);
+        return redirect('/places/'. $place->id)->with('message', 'Information has been updated succesfully!');
     }
 
     /**
@@ -132,12 +132,13 @@ class PlaceController extends Controller
      */
     public function destroy(Place $place)
     {
+
         if($place->image){
             Storage::delete($place->image);
         }
 
         Place::destroy($place->id);
 
-        return redirect('/places');
+        return redirect('/places')->with('message', $place->name . ' has been removed from database!');
     }
 }

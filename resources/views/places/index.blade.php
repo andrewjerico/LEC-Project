@@ -14,34 +14,39 @@
                         value="{{ request('search_place') }}">
                     </div>
                 </form>
-                @can('admin')
-                    <div class="d-flex justify-content-end mb-1">
-                        <a href="/places/create" class="btn btn-dark text-decoration-none" style="height: 37px">
-                            Add Place
-                        </a>
-                    </div>
-                @endcan
             </div>
         </div>
-        <div class="d-flex mb-4">
-            <h5 class="mt-1">
-                <i class="bi bi-funnel-fill"></i>
-                Sort By Location : 
-            </h5>
-            <form action="/places" id="filter_province" class="ms-3">
-                @csrf
-                <select class="form-control" name="filter_province" onchange="submit()">
-                    <option value="none" selected>
-                        none
-                    </option>
-                    @foreach ($provinces as $province)
-                        <option value="{{ $province->id }}" @if (request('filter_province') == $province->id) selected @endif>
-                            {{ $province->province_name }}
+
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <div class="d-flex align-items-center">
+                <h5>
+                    <i class="bi bi-funnel-fill"></i>
+                    Sort By Location : 
+                </h5>
+                <form action="/places" id="filter_province" class="ms-3">
+                    @csrf
+                    <select class="form-control" name="filter_province" onchange="submit()">
+                        <option value="none" selected>
+                            none
                         </option>
-                    @endforeach
-                </select>
-            </form>
+                        @foreach ($provinces as $province)
+                            <option value="{{ $province->id }}" @if (request('filter_province') == $province->id) selected @endif>
+                                {{ $province->province_name }}
+                            </option>
+                        @endforeach
+                    </select>
+                </form>
+            </div>
+
+            @can('admin')
+                <a href="/places/create" class="btn btn-dark text-decoration-none">
+                    Add New Entry
+                </a>
+            @endcan
         </div>
+        
+
+
         @if ($places->count() != 0)
             <div class="row">
                 @foreach ($places as $place)

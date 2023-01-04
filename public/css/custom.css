@@ -72,3 +72,15 @@ img{
     display: grid;
     place-items: center;
 }
+
+.place-detail th{
+    width: 15%;
+}
+
+.place-detail td{
+    width: 85%;
+}
+
+.card{
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}

@@ -1,7 +1,8 @@
 @extends('layouts.template')
 
 @section('content')
-<div class="ps-5 pe-5">
+<div class="p-5">
+    @if($wishlist->count() != 0)
     <table class="table table-borderless">
         <thead>
           <tr class="">
@@ -20,10 +21,11 @@
                     <td class="align-middle">{{ $list->place->name }}</td>
                     <td class="align-middle">Rp. {{ $list->place->price }}</td>
                     <td class="align-middle text-white"> 
-                        <form action="/wishlist/{{ $list->id }}" method="POST">
-                            @csrf
-                            @method('delete')
-                            <button class="btn btn-danger" type="submit">Remove</button>
+                      <form action="/wishlist/{{ $list->id }}" method="POST">
+                          @method('delete')
+                          @csrf
+                          <input type="hidden" value="{{ $list->place->name }}" name="place_name">
+                          <button class="btn btn-danger" type="submit">Remove</button>
                         </form>
                     </td>
                   </tr>
@@ -31,11 +33,18 @@
             @endforeach
         </tbody>
       </table>
-      {{-- <div class="d-flex justify-content-center">
-        <div class="align-center">
-          {{ $watchlist->links() }}
-        </div>
-      </div> --}}
-      
+      <div class="pagination-links mt-5 d-flex justify-content-between">
+          <p class="text-muted">
+              Showing {{ $wishlist->firstItem() }} to {{ $wishlist->lastItem() }}
+              of total {{ $wishlist->total() }} entries
+          </p>
+          {{ $wishlist->withQueryString()->links() }}
+      </div>
+      @else
+      <div class="no-result text-muted">
+          <i class="bi bi-emoji-frown" style="font-size: 10rem"></i>
+          <h4>No Results Found</h4>
+      </div>
+      @endif
 </div>
 @endsection

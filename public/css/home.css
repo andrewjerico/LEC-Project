@@ -66,12 +66,12 @@
     transform: rotateY(0);
 }
 
-.table th{
+.custom-card .table th{
     width: 2rem;
     color: #fff;
 }
 
-.table td{
+.custom-card .table td{
     color: #fff;
 }
 
@@ -124,5 +124,5 @@
     -webkit-line-clamp: 5;
     -webkit-box-orient: vertical;
     overflow: hidden;
-    height: 136px;
+    height: 130px;
 }

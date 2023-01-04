@@ -74,7 +74,7 @@
                                             <i class="bi bi-cash">
                                         </th>
                                         <td>
-                                            {{ 'IDR ' . $p->price }}
+                                            {{ '~ IDR ' . $p->price }}
                                         </td>
                                     </tr>
                                 </tbody>
@@ -133,7 +133,7 @@
                                                 <i class="bi bi-cash">
                                             </th>
                                             <td>
-                                                {{ 'IDR ' . $p->price }}
+                                                {{ '~ IDR ' . $p->price }}
                                             </td>
                                         </tr>
                                     </tbody>
