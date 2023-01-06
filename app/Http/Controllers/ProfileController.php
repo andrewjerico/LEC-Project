@@ -30,6 +30,6 @@ class ProfileController extends Controller
 
         User::where('id', $id)->update($data);
 
-        return back();
+        return back()->with('message', 'Changes has been saved!');
     }
 }

@@ -1,62 +1,68 @@
 @extends('layouts.template')
 
 @section('content')
-    <div class="bg-dark">
-        <div class="container">
-            <div class="row pt-5">
-                <div class="col-md-4 mt-5">
-                    <div class="mt-5">
-                        <div class="d-flex justify-content-center">
-                            <h2 class="text-white">My Profile</h2>
-                        </div>
-                        <div class="d-flex flex-column justify-content-center align-items-center mt-5">
-                            <h4 class="mt-1 text-white">{{ $user->username }}</h4>
-                            <h5 class="text-muted mt-1 text-white">{{ $user->email }}</h5>
+    <div class="bg-dark" style="border-bottom: 5px solid white">
+        <div class="container p-5">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="d-flex flex-column align-items-center text-light">
+                        <i class="bi bi-person-circle" style="font-size: 9rem"></i>
+                        <div class="text-center">
+                            <h4>{{ $user->username }}</h4>
+                            <h5 class="text-muted">{{ $user->email }}</h5>
                         </div>
                     </div>
                     
                 </div>
                 <div class="col-md-8">
-                    <h2 class="text-white">Update Profile</h2>
+                    <h2 class="text-white mb-4">Update Profile</h2>
                     <form action="/profile/{{ $user->id }}" method="post" class="mb-5" enctype="multipart/form-data">
                         @method('put')
                         @csrf
-                        {{-- Username --}}
-                        <div class="mb-3">
-                            <label for="username" class="form-label text-white">Username</label>
-                            <input type="text" class="form-control @error('username') is-invalid @enderror" id="username" name="username" required value="{{ old('username',$user->username) }}">
+
+                        {{-- username --}}
+                        <div class="input-group has-validation d-flex mb-3">
+                            <span class="input-group-text">Username</span>
+                            <input type="text" id="username" name="username" placeholder="Username"
+                            class="form-control @error('username') is-invalid @enderror" 
+                            value="{{ $user->username }}">
+
                             @error('username')
                                 <div class="invalid-feedback">
                                     {{ $message }}
                                 </div>
-                            @enderror  
+                            @enderror
                         </div>
                         
-                        {{-- Email --}}
-                        <div class="mb-3">
-                            <label for="email" class="form-label text-white">Email</label>
-                            <input type="text" class="form-control @error('email') is-invalid @enderror" id="email" name="email" required value="{{ old('email',$user->email) }}">
+                        <div class="input-group has-validation d-flex mb-3">
+                            <span class="input-group-text">Email</span>
+                            <input type="text" id="email" name="email" placeholder="Email"
+                            class="form-control @error('email') is-invalid @enderror" 
+                            value="{{ $user->email }}">
+
                             @error('email')
                                 <div class="invalid-feedback">
                                     {{ $message }}
                                 </div>
-                            @enderror  
+                            @enderror
                         </div>
     
-                        {{-- Phone --}}
-                        <div class="mb-3">
-                            <label for="phone" class="form-label text-white">Phone</label>
-                            <input type="number" class="form-control @error('phone') is-invalid @enderror" id="phone" name="phone" required value="{{ old('phone',$user->phone) }}">
+                        <div class="input-group has-validation d-flex mb-3">
+                            <span class="input-group-text">Phone</span>
+                            <input type="text" id="phone" name="phone" placeholder="Phone"
+                            class="form-control @error('phone') is-invalid @enderror" 
+                            value="{{ $user->phone }}">
+
                             @error('phone')
                                 <div class="invalid-feedback">
                                     {{ $message }}
                                 </div>
-                            @enderror  
+                            @enderror
                         </div>
                         
-                        <div class="d-grid gap-2">
-                            <button type="submit" class="btn btn-light col">Save Changes</button>
-                        </div>
+                        
+                        <button type="submit" class="btn w-100 text-light" style="background-color: var(--blue)">Save Changes</button>
+
                     </form>
                 </div>
             </div>

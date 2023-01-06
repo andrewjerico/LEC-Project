@@ -14,10 +14,10 @@
     
     @include('layouts.navbar')
     @if(session()->has('message'))
-        <div class="alert alert-success alert-dismissible fade show w-100 text-center m-auto" role="alert">
+        <div class="alert alert-success alert-dismissible fade show w-100 text-center m-auto" role="alert"
+        style="border-radius: 0">
             {{ session('message') }}
-            <button type="button" class="text-light btn-close" data-bs-dismiss="alert" aria-label="Close"
-            onclick="this.blur();"></button>
+            <button type="button" class="text-light btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     @endif
     @yield('content')
