@@ -29,6 +29,28 @@
                             </form>
                         </div>
                         @endcan
+                        
+                        @can('user')
+                        @if ( App\Models\Wishlist::where('user_id', Auth::user()->id)
+                                                ->where('place_id', $place->id)->first())
+
+                            <button type="button" class="btn btn-primary">
+                                Added to Wishlist
+                                <i class="bi bi-check"></i>
+                            </button>
+
+                        @else
+                            <form action="/wishlist" method="post">
+                                @csrf
+                                <input type="hidden" name="place_id" value="{{ $place->id }}">
+                                <input type="hidden" name="place_name" value="{{ $place->name }}">
+                                <button type="submit" class="btn btn-primary">
+                                    Add to Wishlist
+                                    <i class="bi bi-plus"></i>
+                                </button>
+                            </form>
+                        @endif
+                        @endcan
                     </div>
                 </div>
                 <table class="table table-borderless place-detail">

@@ -21,7 +21,7 @@
             <div class="d-flex align-items-center">
                 <h5>
                     <i class="bi bi-funnel-fill"></i>
-                    Sort By Location : 
+                    Filter By Region : 
                 </h5>
                 <form action="/places" id="filter_province" class="ms-3">
                     @csrf

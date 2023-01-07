@@ -1,7 +1,9 @@
 @extends('layouts.template')
 
 @section('content')
-    <div class="bg-dark" style="border-bottom: 5px solid white">
+    <div class="bg-dark d-flex justify-content-center align-items-center" 
+    style="border-bottom: 5px solid white; min-height: 500px;">
+
         <div class="container p-5">
             <div class="row">
                 <div class="col-md-4">
@@ -67,6 +69,7 @@
                 </div>
             </div>
         </div>
+
     </div>
-   
+
 @endsection

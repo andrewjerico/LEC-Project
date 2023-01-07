@@ -28,6 +28,7 @@
                 <label for="province_id" class="form-label fs-4">Province</label>
                 <select class="form-control @error('province_id') is-invalid @enderror" 
                 id="province_id" name="province_id">
+                    <option value="">-- Open this select menu --</option>
 
                     @foreach ($provinces as $province)
                         <option value="{{ $province->id }}">
