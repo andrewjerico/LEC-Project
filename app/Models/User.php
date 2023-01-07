@@ -17,13 +17,9 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
-    protected $fillable = [
-        'username',
-        'email',
-        'password',
-        'isAdmin',
-        'phone',
-    ];
+
+    protected $table = 'users';
+    protected $guarded = ['id'];
 
     /**
      * The attributes that should be hidden for serialization.
@@ -43,4 +39,8 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    
+    public function wishlist(){
+        return $this->hasMany(Wishlist::class);
+    }
 }

@@ -1,0 +1,48 @@
+.form-canvas{
+    min-height: 600px;
+    background-color: var(--white);
+    display: grid;
+    place-items: center;
+    padding: 5em;
+}
+
+.form-card{
+    width: 80%;
+    min-height: 400px;
+    background-color: white;
+    border-radius: 10px;
+    display: flex;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.form-card-left{
+    width: 40%;
+    background: linear-gradient(135deg, var(--dblue) 0, var(--blue) 50%, var(--lblue) 100%);
+    border-radius: 10px 0 0 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-card-right{
+    width: 60%;
+}
+
+.custom-form-input,
+.custom-form-button{
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.custom-floating-label i{
+    margin-right: 10px;
+}
+
+.cfb-left{
+    transition: .6s;
+}
+
+.cfb-left:hover{
+    color: #000;
+    transform: translateY(-5px);
+}

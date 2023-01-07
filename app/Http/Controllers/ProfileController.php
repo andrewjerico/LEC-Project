@@ -8,17 +8,9 @@ use Illuminate\Support\Facades\Auth;
 
 class ProfileController extends Controller
 {
-    public function edit(Request $request)
+    public function edit(User $user)
     {   
-        $users = User::find($request->id);
-
-        if(Auth::user()->id != $users->id){
-            abort(403);
-        }
-
-        return view('profile/index',[
-            'user' => $users
-        ]);
+        return view('profile.edit', compact('user'));
     }
     /**
      * Update the specified resource in storage.
@@ -27,37 +19,17 @@ class ProfileController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(Request $request, $id)
     {   
-        $user = User::find($request->id);
 
-        // if($request->file('image')){
-        //     $data = $request->validate([
-        //         'image' => 'required|image|file'
-        //     ]);
+        $data = $request->validate([
+            'username' => 'required',
+            'email' => 'required|email:dns',
+            'phone' => 'required|min:5|max:13'
+        ]);
 
-        //     if($request->oldImage){
-        //         Storage::delete($request->oldImage);
-        //     }
-        //     $user->image = $request->file('image')->store('profile-images');
-        // }
-        // else{
-        //     $data = $request->validate([
-        //         'username' => 'required',
-        //         'email' => 'required|email:dns',
-        //         'DOB' => 'required',
-        //         'phone' => 'required|min:5|max:13'
-        //     ]);
-    
-        //     $date =  date($request->DOB);
-    
-        //     $user->username = $data['username'];
-        //     $user->email = $data['email'];
-        //     $user->DOB = $date;
-        //     $user->phone = $data['phone'];
-        // }
-        // $user->save();
+        User::where('id', $id)->update($data);
 
-        return redirect()->to('/profile/'.$user->id);
+        return back()->with('message', 'Changes has been saved!');
     }
 }
